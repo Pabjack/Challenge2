@@ -21,7 +21,7 @@ public class Sesion {
     private String estado_sesion;
     private long id_usuario;
 
-    @OneToOne(targetEntity = Usuario.class, cascade = CascadeType.PERSIST)
-    @JoinColumn(name ="is_usuario")
-    private Usuario usuario;
+   // @OneToOne(targetEntity = Usuario.class, cascade = CascadeType.PERSIST)
+   // @JoinColumn(name ="id_usuario")
+   // private Usuario usuario;
 }

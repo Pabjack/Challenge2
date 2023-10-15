@@ -1,14 +1,13 @@
 package equipo7.challenge2.services;
 
 
-import equipo7.challenge2.domain.GenericResponse;
 import equipo7.challenge2.entities.Usuario;
 import equipo7.challenge2.repositories.RepositoryUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ServicioUsuario {
@@ -16,7 +15,10 @@ public class ServicioUsuario {
     private RepositoryUsuario repository;
 
     public List<Usuario> allUsuarios(){
-        return repository.findAll();
+        return (List<Usuario>) repository.findAll();
+    }
+    public Optional<Usuario> findUsuario(int id){
+        return repository.findById(id);
     }
     }
 
