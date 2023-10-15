@@ -18,6 +18,7 @@ public class Usuario {
     private String nombre_usuario;
     private String correo;
     private String contrasena;
+    //contrasena
     private String info_pago;
 
    // @OneToOne(targetEntity = Sesion.class, cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
