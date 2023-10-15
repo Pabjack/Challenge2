@@ -17,9 +17,9 @@ public class Resena {
     private String comentarios;
     private String calificacion;
 
-    @ManyToOne(targetEntity = Usuario.class, cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    private Usuario usuario;
+  //  @ManyToOne(targetEntity = Usuario.class, cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+  //  private Usuario usuario;
 
-    @ManyToOne(targetEntity = Producto.class, cascade =  CascadeType.PERSIST, fetch = FetchType.LAZY)
-    private Producto producto;
+  //  @ManyToOne(targetEntity = Producto.class, cascade =  CascadeType.PERSIST, fetch = FetchType.LAZY)
+  //  private Producto producto;
 }
