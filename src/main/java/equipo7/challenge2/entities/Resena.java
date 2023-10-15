@@ -15,6 +15,7 @@ public class Resena {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id_resena;
     private String comentarios;
+    //comentarios
     private String calificacion;
 
     @ManyToOne(targetEntity = Usuario.class, cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
