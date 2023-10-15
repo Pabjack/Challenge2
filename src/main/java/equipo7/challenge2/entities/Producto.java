@@ -10,7 +10,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
+//jsjhj
 public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
