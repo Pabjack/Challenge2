@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
+//jkgjhg
 public class Transaccion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +23,7 @@ public class Transaccion {
     private double monto;
     private String estado;
     private String informacion_app;
-
+//hjghgujyg
   //  @ManyToMany(targetEntity = Producto.class, fetch = FetchType.LAZY)
   //  private List<Producto> productos;
 
