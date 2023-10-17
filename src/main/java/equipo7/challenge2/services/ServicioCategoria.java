@@ -21,8 +21,12 @@ public class ServicioCategoria {
     public Optional<Categoria> findCategoria(int id){
         return repository.findById(id);
     }
-    public Optional <Producto> deleteCategoria(int id){
+    public Optional <Categoria> deleteCategoria(int id){
         repository.deleteById(id);
+        return null;
+    }
+    public Optional<Categoria> addCategoria(Categoria c){
+        repository.save(c);
         return null;
     }
     }

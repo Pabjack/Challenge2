@@ -21,9 +21,14 @@ public class ServicioUsuario {
     public Optional<Usuario> findUsuario(int id){
         return repository.findById(id);
     }
-    public Optional <Producto> deleteUsuario(int id){
+    public Optional <Usuario> deleteUsuario(int id){
         repository.deleteById(id);
         return null;
     }
+    public Optional<Usuario> addUsuario(Usuario u){
+        repository.save(u);
+        return null;
+    }
+
     }
 
