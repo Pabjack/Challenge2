@@ -26,6 +26,10 @@ public class Usuario {
    // @OneToMany(targetEntity = Resena.class, fetch = FetchType.LAZY, mappedBy = "usuario", fetch = FetchType.LAZY)
    // private List<Resena> resenas;
 
-   // @ManyToMany(targetEntity = Transaccion.class, fetch = FetchType.LAZY)
-   // private List<Transaccion> transacciones;
+    @ManyToMany(targetEntity = Transaccion.class, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "usuario_transaccion",
+            joinColumns = @JoinColumn(name = "id_usuario"),
+            inverseJoinColumns = @JoinColumn(name = "id_transaccion"))
+    private List<Transaccion> transacciones;
     }

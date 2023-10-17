@@ -18,6 +18,6 @@ public class Categoria{
     private String nombre_categoria;
     private String descripcion_categoria;
 
-  //  @ManyToMany(targetEntity = Producto.class, fetch = FetchType.LAZY)
-  //  private List<Producto> productos;
+ // @ManyToMany(targetEntity = Producto.class, fetch = FetchType.LAZY)
+   // private List<Producto> productos;
 }

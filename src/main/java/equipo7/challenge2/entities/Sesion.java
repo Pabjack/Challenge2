@@ -23,5 +23,5 @@ public class Sesion {
 
    // @OneToOne(targetEntity = Usuario.class, cascade = CascadeType.PERSIST)
    // @JoinColumn(name ="id_usuario")
-   // private Usuario usuario;
+    //private Usuario usuario;
 }

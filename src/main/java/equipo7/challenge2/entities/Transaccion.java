@@ -22,7 +22,7 @@ public class Transaccion {
     private LocalDate fecha;
     private double monto;
     private String estado;
-    private String informacion_app;
+    private String informacion_pago;
 
   //  @ManyToMany(targetEntity = Producto.class, fetch = FetchType.LAZY)
   //  private List<Producto> productos;

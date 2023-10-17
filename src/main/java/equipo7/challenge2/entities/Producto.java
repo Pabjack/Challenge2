@@ -10,7 +10,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-//jsjhj
+
 public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,15 +19,25 @@ public class Producto {
     private String descripcion_producto;
     private long cantidad_producto;
 
-   // @ManyToMany(targetEntity = Categoria.class, fetch = FetchType.LAZY)
-   // private List<Categoria> categorias;
+   @ManyToMany(targetEntity = Categoria.class, fetch = FetchType.LAZY)
+   @JoinTable(
+           name = "producto_categoria",
+           joinColumns = @JoinColumn(name = "id_producto"),
+           inverseJoinColumns = @JoinColumn(name = "id_categoria"))
+    private List<Categoria> categorias;
 
-    //@OneToMany(targetEntity = Resena.class, fetch = FetchType.LAZY, mappedBy = "producto")
-    //private  List<Resena> resenas;
 
-   // @ManyToMany (targetEntity = Proveedor.class, fetch =  FetchType.LAZY)
-    //private List<Proveedor> proveedoress;
+    @ManyToMany (targetEntity = Proveedor.class, fetch =  FetchType.LAZY)
+    @JoinTable(
+            name = "producto_proveedor",
+            joinColumns = @JoinColumn(name = "id_producto"),
+            inverseJoinColumns = @JoinColumn(name = "id_proveedor"))
+    private List<Proveedor> proveedoress;
 
-    //@ManyToMany(targetEntity = Transaccion.class, fetch = FetchType.LAZY)
-   // private List<Transaccion> transacciones;
+    @ManyToMany(targetEntity = Transaccion.class, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "producto_transaccion",
+            joinColumns = @JoinColumn(name = "id_producto"),
+            inverseJoinColumns = @JoinColumn(name = "id_transaccion"))
+    private List<Transaccion> transacciones;
 }

@@ -13,9 +13,11 @@ public class ControllerProductos {
 
     @Autowired
     private ServicioProducto servicio;
-    @GetMapping
+    @GetMapping("")
     public GenericResponse getAllProductos(){
         return new GenericResponse(201, "encontrado", servicio.allProductos().toString());
     }
+
+
 
 }
