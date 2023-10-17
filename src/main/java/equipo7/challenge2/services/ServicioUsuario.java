@@ -1,6 +1,7 @@
 package equipo7.challenge2.services;
 
 
+import equipo7.challenge2.entities.Producto;
 import equipo7.challenge2.entities.Usuario;
 import equipo7.challenge2.repositories.RepositoryUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,10 @@ public class ServicioUsuario {
     }
     public Optional<Usuario> findUsuario(int id){
         return repository.findById(id);
+    }
+    public Optional <Producto> deleteUsuario(int id){
+        repository.deleteById(id);
+        return null;
     }
     }
 

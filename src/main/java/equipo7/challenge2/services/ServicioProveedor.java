@@ -2,6 +2,7 @@ package equipo7.challenge2.services;
 
 
 import equipo7.challenge2.entities.Categoria;
+import equipo7.challenge2.entities.Producto;
 import equipo7.challenge2.entities.Proveedor;
 import equipo7.challenge2.repositories.RepositoryCategoria;
 import equipo7.challenge2.repositories.RepositoryProveedor;
@@ -21,5 +22,10 @@ public class ServicioProveedor {
     public Optional<Proveedor> findProveedores(int id){
         return repository.findById(id);
     }
+    public Optional <Producto> deleteProveedor(int id){
+        repository.deleteById(id);
+        return null;
     }
+    }
+
 

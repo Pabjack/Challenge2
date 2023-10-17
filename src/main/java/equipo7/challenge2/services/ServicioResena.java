@@ -2,6 +2,7 @@ package equipo7.challenge2.services;
 
 
 import equipo7.challenge2.entities.Categoria;
+import equipo7.challenge2.entities.Producto;
 import equipo7.challenge2.entities.Resena;
 import equipo7.challenge2.repositories.RepositoryCategoria;
 import equipo7.challenge2.repositories.RepositoryResena;
@@ -20,6 +21,10 @@ public class ServicioResena {
     }
     public Optional<Resena> findResena(int id){
         return repository.findById(id);
+    }
+    public Optional <Producto> deleteResena(int id){
+        repository.deleteById(id);
+        return null;
     }
     }
 

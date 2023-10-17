@@ -21,5 +21,10 @@ public class ServicioProducto {
     public Optional<Producto> findProducto(int id){
         return repository.findById(id);
     }
+
+    public Optional <Producto> deleteProducto(int id){
+         repository.deleteById(id);
+         return null;
+    }
     }
 
