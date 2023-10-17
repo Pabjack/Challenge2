@@ -16,10 +16,11 @@ public class Sesion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id_sesion;
+    //sesion
     @Column(columnDefinition = "DATE")
     private LocalDate fecha;
     private String estado_sesion;
-    private long id_usuario;
+    //estado-sesion    private long id_usuario;
 
    // @OneToOne(targetEntity = Usuario.class, cascade = CascadeType.PERSIST)
    // @JoinColumn(name ="id_usuario")

@@ -26,6 +26,7 @@ public class Transaccion {
 
   //  @ManyToMany(targetEntity = Producto.class, fetch = FetchType.LAZY)
   //  private List<Producto> productos;
+    //lista
 
   //  @ManyToMany(targetEntity = Usuario.class, fetch = FetchType.LAZY)
   //  private  List<Usuario> usuarios;
