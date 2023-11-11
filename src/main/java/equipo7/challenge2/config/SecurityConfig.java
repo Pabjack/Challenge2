@@ -22,5 +22,6 @@ public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Excepti
                     .authenticated()
             ).formLogin(withDefaults())
             .build();
+
 }
 }
