@@ -15,10 +15,10 @@ public class UserDetailServiceImpl implements UserDetailsService {
     private RepositoryUsuario repositoryUsuario;
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String correo) throws UsernameNotFoundException {
         Usuario usuario = repositoryUsuario
-                .findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("El usuario con email" + email + "no existe"));
+                .findByCorreo(correo)
+                .orElseThrow(() -> new UsernameNotFoundException("El usuario con email" + correo + "no existe"));
 
         return new UserDetailsImpl(usuario);
 
