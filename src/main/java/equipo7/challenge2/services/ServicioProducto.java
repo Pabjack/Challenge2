@@ -13,19 +13,18 @@ public class ServicioProducto {
     @Autowired
     private RepositoryProducto repositoryProducto;
 
-    public RepositoryProducto allProductos(){
-        return repositoryProducto;
+    public Iterable<Producto> allProductos(){
+        return repositoryProducto.findAll();
     }
-    public RepositoryProducto findProducto(int id){
-        return repositoryProducto;
+    public Optional<Producto> findProducto(int id){
+        return repositoryProducto.findById(id);
     }
 
-    public Optional <Producto> deleteProducto(int id){
-         repositoryProducto.deleteById(id);
-         return null;
+    public void deleteProducto(int id){
+        repositoryProducto.deleteById(id);
     }
-    public Optional<Producto> addProducto(Producto p){
-        return null;
+    public Producto addProducto(Producto p){
+        return repositoryProducto.save(p);
     }
-    }
+}
 

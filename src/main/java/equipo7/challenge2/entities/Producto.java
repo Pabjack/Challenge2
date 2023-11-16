@@ -23,6 +23,15 @@ public class Producto {
     private String nombre_producto;
     private String descripcion_producto;
     private long cantidad_producto;
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "id_producto=" + id_producto +
+                ", nombre_producto='" + nombre_producto + '\'' +
+                ", descripcion_producto='" + descripcion_producto + '\'' +
+                ", cantidad_producto=" + cantidad_producto +
+                '}';
+    }
 
    @ManyToMany(targetEntity = Categoria.class, fetch = FetchType.LAZY)
    @JoinTable(

@@ -11,13 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/categorias")
+@RequestMapping("/categorias" )
+
 @RequiredArgsConstructor
 public class ControllerCategoria {
 
     @Autowired
     private ServicioCategoria servicio;
-    @GetMapping
+    @GetMapping("/all")
     public GenericResponse getAllCategoria(){
         return new GenericResponse(201, "encontrado", servicio.allCategorias().toString());
     }

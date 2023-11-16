@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 
 public interface RepositoryProducto extends CrudRepository<Producto, Integer> {
-    // Tus métodos personalizados aquí
+
 }
 

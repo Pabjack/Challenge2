@@ -35,6 +35,7 @@ public class SecurityConfig {
         return http
                 .csrf().disable()
                 .authorizeRequests()
+                .regexMatchers("/categorias/all" , "/producto/all").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
