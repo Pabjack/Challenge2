@@ -7,6 +7,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface RepositoryUsuario extends CrudRepository <Usuario, Integer>{
-    Optional<Usuario> findByCorreo(String correo);
+    Optional<Usuario> findByName(String correo);
     Boolean existsUsuarioBy(String correo);
 }

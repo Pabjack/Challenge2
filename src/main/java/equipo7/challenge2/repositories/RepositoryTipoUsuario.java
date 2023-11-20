@@ -7,5 +7,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.Optional;
 
 public interface RepositoryTipoUsuario  extends CrudRepository<TipoUsuario, Integer> {
-    Optional<TipoUsuario> findBy(String tipo_usuario);
+    Optional<TipoUsuario> findByName(String tipo_usuario);
 }
