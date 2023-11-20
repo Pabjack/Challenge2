@@ -2,6 +2,7 @@ package equipo7.challenge2.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,15 +19,14 @@ public class Usuario {
     private String nombre_usuario;
     private String correo;
     private String contrasena;
-    //contrasena
     private String info_pago;
 
-   // @OneToOne(targetEntity = Sesion.class, cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-   // private Sesion sesion;
-
-   // @OneToMany(targetEntity = Resena.class, fetch = FetchType.LAZY, mappedBy = "usuario", fetch = FetchType.LAZY)
-   // private List<Resena> resenas;
-
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "usuario_tipoUsuario",
+            joinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario"),
+            inverseJoinColumns = @JoinColumn (name = "id_role", referencedColumnName = "id_role"))
+    private List<TipoUsuario> roles = new ArrayList<>();
     @ManyToMany(targetEntity = Transaccion.class, fetch = FetchType.LAZY)
     @JoinTable(
             name = "usuario_transaccion",
