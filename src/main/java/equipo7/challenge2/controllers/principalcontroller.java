@@ -3,7 +3,6 @@ package equipo7.challenge2.controllers;
 
 import equipo7.challenge2.entities.Erole;
 import equipo7.challenge2.entities.Role;
-import equipo7.challenge2.entities.TipoUsuario;
 import equipo7.challenge2.entities.Usuario;
 import equipo7.challenge2.repositories.RepositoryUsuario;
 import equipo7.challenge2.request.createUserDTO;
@@ -29,7 +28,7 @@ public class principalcontroller {
                 .collect(Collectors.toSet());
 
         Usuario usuario = Usuario.builder()
-                .nombreUsuario(createUserDTO.getNombre_usuario())
+                .nombreUsuario(createUserDTO.getNombreUsuario())
                 .correo(createUserDTO.getCorreo())
                 .contrasena(createUserDTO.getContrasena())
                 .roles(roles)

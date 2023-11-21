@@ -24,7 +24,7 @@ public class Usuario {
     private String contrasena;
     private String info_pago;
 
-    @ManyToMany(fetch = FetchType.EAGER, targetEntity = TipoUsuario.class, cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Role.class, cascade = CascadeType.PERSIST)
     @JoinTable(name = "user_roles",
             joinColumns = {@JoinColumn(name = "id_usuario")},
             inverseJoinColumns = {@JoinColumn(name = "role_id")}

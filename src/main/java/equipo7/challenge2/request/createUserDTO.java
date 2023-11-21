@@ -10,7 +10,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class createUserDTO {
-    private String nombre_usuario;
+    private String nombreUsuario;
     private String correo;
     private String contrasena;
     private Set<String> roles;
