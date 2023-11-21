@@ -8,6 +8,7 @@ import equipo7.challenge2.repositories.RepositoryUsuario;
 import equipo7.challenge2.request.createUserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +18,14 @@ import java.util.stream.Collectors;
 @RestController
 
 public class principalcontroller {
+    @Autowired
+    private PasswordEncoder passwordEncoder(){
+
+    }
+    @GetMapping("/hello")
+    public String hello (){
+        return "hello word";
+    }
     @Autowired
     private RepositoryUsuario repositoryUsuario;
     @PostMapping("/crearUsuario")
@@ -30,7 +39,7 @@ public class principalcontroller {
         Usuario usuario = Usuario.builder()
                 .nombreUsuario(createUserDTO.getNombreUsuario())
                 .correo(createUserDTO.getCorreo())
-                .contrasena(createUserDTO.getContrasena())
+                .contrasena(passwordEncoder().encode(createUserDTO.getContrasena()))
                 .roles(roles)
                 .build();
         repositoryUsuario.save(usuario);
