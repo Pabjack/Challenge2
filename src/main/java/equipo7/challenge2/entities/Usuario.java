@@ -4,33 +4,32 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-
+@Table(name = "usuario")
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id_usuario;
-    private String nombre_usuario;
+    private String nombreUsuario; // Cambiado a camel case
+
     private String correo;
     private String contrasena;
     private String info_pago;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "usuario_tipoUsuario",
-            joinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario"),
-            inverseJoinColumns = @JoinColumn (name = "id_role", referencedColumnName = "id_role"))
-    private List<TipoUsuario> roles = new ArrayList<>();
-    @ManyToMany(targetEntity = Transaccion.class, fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "usuario_transaccion",
-            joinColumns = @JoinColumn(name = "id_usuario"),
-            inverseJoinColumns = @JoinColumn(name = "id_transaccion"))
-    private List<Transaccion> transacciones;
-    }
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = TipoUsuario.class, cascade = CascadeType.PERSIST)
+    @JoinTable(name = "user_roles",
+            joinColumns = {@JoinColumn(name = "id_usuario")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id")}
+    )
+    private Set<Role> roles;
+}
+
+
