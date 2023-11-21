@@ -19,9 +19,7 @@ import java.util.stream.Collectors;
 
 public class principalcontroller {
     @Autowired
-    private PasswordEncoder passwordEncoder(){
-
-    }
+    private PasswordEncoder passwordEncoder;
     @GetMapping("/hello")
     public String hello (){
         return "hello word";
@@ -39,7 +37,7 @@ public class principalcontroller {
         Usuario usuario = Usuario.builder()
                 .nombreUsuario(createUserDTO.getNombreUsuario())
                 .correo(createUserDTO.getCorreo())
-                .contrasena(passwordEncoder().encode(createUserDTO.getContrasena()))
+                .contrasena(passwordEncoder.encode(createUserDTO.getContrasena()))
                 .roles(roles)
                 .build();
         repositoryUsuario.save(usuario);
