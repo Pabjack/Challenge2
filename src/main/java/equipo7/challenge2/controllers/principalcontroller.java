@@ -20,10 +20,10 @@ import java.util.stream.Collectors;
 public class principalcontroller {
     @Autowired
     private PasswordEncoder passwordEncoder;
-    @GetMapping("/hello")
-    public String hello (){
-        return "hello word";
-    }
+   // @GetMapping("/hello")
+    //public String hello (){
+     //   return "hello word";
+    //}
     @Autowired
     private RepositoryUsuario repositoryUsuario;
     @PostMapping("/crearUsuario")
