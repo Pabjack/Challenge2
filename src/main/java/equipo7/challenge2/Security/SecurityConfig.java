@@ -27,7 +27,7 @@ public class SecurityConfig {
         jwtAuthenticationFilter.setAuthenticationManager(authenticationManager);
         jwtAuthenticationFilter.setFilterProcessesUrl("/login");
         return httpSecurity.authorizeHttpRequests(auth -> {
-                    auth.antMatchers("/hello").permitAll();
+                    auth.antMatchers("/hello", "/login", "/usuario").permitAll();
                     auth.anyRequest().authenticated();
                 })
 
@@ -35,6 +35,7 @@ public class SecurityConfig {
                     session.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
                 })
                 .addFilter(jwtAuthenticationFilter)
+
                 .build();
     }
     @Bean

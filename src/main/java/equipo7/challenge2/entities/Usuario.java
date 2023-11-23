@@ -18,6 +18,7 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id_usuario;
+
     private String nombreUsuario; // Cambiado a camel case
 
     private String correo;

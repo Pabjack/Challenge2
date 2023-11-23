@@ -33,13 +33,13 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public Authentication attemptAuthentication(HttpServletRequest request,
                                                 HttpServletResponse response) throws AuthenticationException {
         Usuario usuario = null;
-        String nombreUsuario;
-        String contrasena;
+        String username = "";
+        String password= "";
 
         try {
             usuario = new ObjectMapper().readValue(request.getInputStream(), Usuario.class);
-            nombreUsuario = usuario.getNombreUsuario();
-            contrasena = usuario.getContrasena();
+            username = usuario.getNombreUsuario();
+            password = usuario.getContrasena();
 
         }
         catch (StreamReadException e) {
@@ -50,7 +50,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             throw new RuntimeException(e);
         }
         UsernamePasswordAuthenticationToken authenticationToken =
-                new UsernamePasswordAuthenticationToken(nombreUsuario,contrasena);
+                new UsernamePasswordAuthenticationToken(username,password);
 
         return getAuthenticationManager().authenticate(authenticationToken);
     }
