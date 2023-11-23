@@ -11,23 +11,26 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
-
 public class principalcontroller {
+    Logger logger = LoggerFactory.getLogger(principalcontroller.class);
+
     @Autowired
     private PasswordEncoder passwordEncoder;
-   // @GetMapping("/hello")
-    //public String hello (){
-     //   return "hello word";
-    //}
+
     @Autowired
     private RepositoryUsuario repositoryUsuario;
+
     @PostMapping("/crearUsuario")
     public ResponseEntity<?> createUser(@Validated @RequestBody CreateUserDTO createUserDTO){
+        logger.info("Creando usuario: {}", createUserDTO.getNombreUsuario());
+
         Set<Role> roles = createUserDTO.getRoles().stream()
                 .map(role -> Role.builder()
                         .role(Erole.valueOf(role))
@@ -42,13 +45,19 @@ public class principalcontroller {
                 .build();
         repositoryUsuario.save(usuario);
 
-        return ResponseEntity.ok(usuario);
+        logger.info("Usuario creado: {}", usuario.getNombreUsuario());
 
+        return ResponseEntity.ok(usuario);
     }
+
     @DeleteMapping("/deleteUsuario")
     public String deleteUser(@RequestParam String id_usuario){
-        repositoryUsuario.deleteById(Long.parseLong(id_usuario));
-        return "Se ha borrado el usuario con id ".concat(id_usuario);
+        logger.info("Borrando usuario con id: {}", id_usuario);
 
+        repositoryUsuario.deleteById(Long.parseLong(id_usuario));
+
+        logger.info("Usuario borrado con id: {}", id_usuario);
+
+        return "Se ha borrado el usuario con id ".concat(id_usuario);
     }
 }
