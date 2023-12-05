@@ -27,7 +27,9 @@ public class SecurityConfig {
         jwtAuthenticationFilter.setAuthenticationManager(authenticationManager);
         jwtAuthenticationFilter.setFilterProcessesUrl("/login");
         return httpSecurity.authorizeHttpRequests(auth -> {
-                    auth.antMatchers("/hello", "/login", "/usuario").permitAll();
+                    auth.antMatchers("/hello", "/login", "productos").permitAll();
+                    auth.antMatchers("/admin", "/usuarios", "/productos").hasRole("ADMINISTRADOR");
+                    auth.antMatchers("/proveedor/productos").hasRole("PROVEEDOR");
                     auth.anyRequest().authenticated();
                 })
 
