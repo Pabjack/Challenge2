@@ -22,7 +22,7 @@ public class principalcontroller {
     Logger logger = LoggerFactory.getLogger(principalcontroller.class);
 
     @Autowired
-    //paco guapo
+    //paco guapo papa
     private PasswordEncoder passwordEncoder;
 
     @Autowired
