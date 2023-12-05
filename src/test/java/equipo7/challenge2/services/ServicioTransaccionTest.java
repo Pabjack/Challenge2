@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -51,12 +53,15 @@ public class ServicioTransaccionTest {
         servicioTransaccion.deleteSesion(1);
         verify(repositoryTransaccion, times(1)).deleteById(1);
     }
+    private static final Logger logger = LoggerFactory.getLogger(ServicioCategoriaTest.class);
 
     @Test
     void addTransaccion() {
         when(repositoryTransaccion.save(transaccion)).thenReturn(transaccion);
         servicioTransaccion.addTransaccion(transaccion);
         verify(repositoryTransaccion, times(1)).save(transaccion);
+        logger.info("Logger exitoso.");
+
     }
 }
 

@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Optional;
 
@@ -48,10 +50,16 @@ public class ServicioCategoriaTest {
         verify(repositoryCategoria, times(1)).deleteById(1);
     }
 
+    private static final Logger logger = LoggerFactory.getLogger(ServicioCategoriaTest.class);
+
     @Test
     void addCategoria() {
         when(repositoryCategoria.save(categoria)).thenReturn(categoria);
         servicioCategoria.addCategoria(categoria);
         verify(repositoryCategoria, times(1)).save(categoria);
+
+        logger.info("Este es un mensaje del Logger para informar que todo ocurrio exitosamente.");
     }
+
+
 }

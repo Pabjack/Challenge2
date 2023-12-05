@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Optional;
 
@@ -48,11 +50,14 @@ public class ServicioResenaTest {
         servicioResena.deleteResena(1);
         verify(repositoryResena, times(1)).deleteById(1);
     }
+    private static final Logger logger = LoggerFactory.getLogger(ServicioCategoriaTest.class);
 
     @Test
     void addResena() {
         when(repositoryResena.save(resena)).thenReturn(resena);
         servicioResena.addResena(resena);
         verify(repositoryResena, times(1)).save(resena);
+        logger.info("Logger exitoso.");
+
     }
 }
