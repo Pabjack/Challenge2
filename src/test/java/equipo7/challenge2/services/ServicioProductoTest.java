@@ -30,6 +30,7 @@ public class ServicioProductoTest {
         producto.setNombre_producto("Producto de prueba");
         producto.setDescripcion_producto("Descripción de prueba");
         producto.setCantidad_producto(10L);
+
     }
 
     @Test
@@ -61,3 +62,4 @@ public class ServicioProductoTest {
 
     }
 }
+
