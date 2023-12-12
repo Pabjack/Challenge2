@@ -10,7 +10,9 @@ import org.mockito.MockitoAnnotations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Optional;
 
 import static org.mockito.Mockito.*;
@@ -24,6 +26,11 @@ public class ServicioTransaccionTest {
 
     private Transaccion transaccion;
 
+    private static final Logger logger = LoggerFactory.getLogger(ServicioCategoriaTest.class);
+    Date fechaHoraActual = new Date();
+    SimpleDateFormat formatoFechaHora = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    String fechaHoraFormateada = formatoFechaHora.format(fechaHoraActual);
+    String mensajeCoFehaHora = fechaHoraFormateada;
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
@@ -46,22 +53,22 @@ public class ServicioTransaccionTest {
         when(repositoryTransaccion.findById(1)).thenReturn(Optional.of(transaccion));
         servicioTransaccion.findTransaccion(1);
         verify(repositoryTransaccion, times(1)).findById(1);
+        logger.info("Se encontro la transaccion " + mensajeCoFehaHora);
     }
 
     @Test
     void deleteSesion() {
         servicioTransaccion.deleteSesion(1);
         verify(repositoryTransaccion, times(1)).deleteById(1);
+        logger.info("Se borro la transaccion " + mensajeCoFehaHora);
     }
-    private static final Logger logger = LoggerFactory.getLogger(ServicioCategoriaTest.class);
 
     @Test
     void addTransaccion() {
         when(repositoryTransaccion.save(transaccion)).thenReturn(transaccion);
         servicioTransaccion.addTransaccion(transaccion);
         verify(repositoryTransaccion, times(1)).save(transaccion);
-        logger.info("Logger exitoso.");
-
+        logger.info("Se añadio la transaccion " + mensajeCoFehaHora);
     }
 }
 

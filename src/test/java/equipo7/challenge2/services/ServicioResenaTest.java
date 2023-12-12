@@ -10,6 +10,8 @@ import org.mockito.MockitoAnnotations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Optional;
 
 import static org.mockito.Mockito.*;
@@ -23,6 +25,11 @@ public class ServicioResenaTest {
 
     private Resena resena;
 
+    private static final Logger logger = LoggerFactory.getLogger(ServicioCategoriaTest.class);
+    Date fechaHoraActual = new Date();
+    SimpleDateFormat formatoFechaHora = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    String fechaHoraFormateada = formatoFechaHora.format(fechaHoraActual);
+    String mensajeCoFehaHora = fechaHoraFormateada;
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
@@ -36,6 +43,7 @@ public class ServicioResenaTest {
     void allResenas() {
         servicioResena.allResenas();
         verify(repositoryResena, times(1)).findAll();
+        logger.info("Estas son todas las reseñas a la fecha " + mensajeCoFehaHora);
     }
 
     @Test
@@ -43,21 +51,21 @@ public class ServicioResenaTest {
         when(repositoryResena.findById(1)).thenReturn(Optional.of(resena));
         servicioResena.findResena(1);
         verify(repositoryResena, times(1)).findById(1);
+        logger.info("Estas son las reseñas encontradas a la fecha " + mensajeCoFehaHora);
     }
 
     @Test
     void deleteResena() {
         servicioResena.deleteResena(1);
         verify(repositoryResena, times(1)).deleteById(1);
+        logger.info("Se elimino la reseña " + mensajeCoFehaHora);
     }
-    private static final Logger logger = LoggerFactory.getLogger(ServicioCategoriaTest.class);
 
     @Test
     void addResena() {
         when(repositoryResena.save(resena)).thenReturn(resena);
         servicioResena.addResena(resena);
         verify(repositoryResena, times(1)).save(resena);
-        logger.info("Logger exitoso.");
-
+        logger.info("Se añadio la reseña " + mensajeCoFehaHora);
     }
 }

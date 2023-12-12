@@ -9,6 +9,8 @@ import org.mockito.MockitoAnnotations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Optional;
 
 import static org.mockito.Mockito.*;
@@ -21,6 +23,12 @@ public class ServicioProductoTest {
     private ServicioProducto servicioProducto;
 
     private Producto producto;
+
+    private static final Logger logger = LoggerFactory.getLogger(ServicioCategoriaTest.class);
+    Date fechaHoraActual = new Date();
+    SimpleDateFormat formatoFechaHora = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    String fechaHoraFormateada = formatoFechaHora.format(fechaHoraActual);
+    String mensajeCoFehaHora = fechaHoraFormateada;
 
     @BeforeEach
     void setUp() {
@@ -37,6 +45,7 @@ public class ServicioProductoTest {
     void allProductos() {
         servicioProducto.allProductos();
         verify(repositoryProducto, times(1)).findAll();
+        logger.info("Se visualizaron los productos exitosamente " + mensajeCoFehaHora);
     }
 
     @Test
@@ -44,22 +53,22 @@ public class ServicioProductoTest {
         when(repositoryProducto.findById(1)).thenReturn(Optional.of(producto));
         servicioProducto.findProducto(1);
         verify(repositoryProducto, times(1)).findById(1);
+        logger.info("Se encontro el producto exitosamente " + mensajeCoFehaHora);
     }
 
     @Test
     void deleteProducto() {
         servicioProducto.deleteProducto(1);
         verify(repositoryProducto, times(1)).deleteById(1);
+        logger.info("Se borro el producto exitosamente " + mensajeCoFehaHora);
     }
-    private static final Logger logger = LoggerFactory.getLogger(ServicioCategoriaTest.class);
 
     @Test
     void addProducto() {
         when(repositoryProducto.save(producto)).thenReturn(producto);
         servicioProducto.addProducto(producto);
         verify(repositoryProducto, times(1)).save(producto);
-        logger.info("Se agrego el producto exitosamente.");
-
+        logger.info("Se agrego el producto exitosamente " + mensajeCoFehaHora);
     }
 }
 
