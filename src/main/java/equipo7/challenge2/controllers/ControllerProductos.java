@@ -4,15 +4,13 @@ import equipo7.challenge2.domain.GenericResponse;
 import equipo7.challenge2.entities.Producto;
 import equipo7.challenge2.services.ServicioProducto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @RestController
-@RequestMapping("/producto")
+@RequestMapping("/productos")
 public class ControllerProductos {
 
     @Autowired
@@ -25,5 +23,12 @@ public class ControllerProductos {
                 .collect(Collectors.joining(", "));
         return new GenericResponse(201, "encontrado", productosStr);
     }
+    @PostMapping("/add")
+    public GenericResponse addProducto(@RequestBody Producto nuevoProducto){
+        Producto producto = servicio.addProducto(nuevoProducto);
+        return new GenericResponse(200, "producto agregado", producto.toString());
+    }
+
+
 }
 

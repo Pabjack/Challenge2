@@ -9,37 +9,49 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.firewall.DefaultHttpFirewall;
+import org.springframework.security.web.firewall.HttpFirewall;
+import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
+import org.springframework.web.util.UrlPathHelper;
 
 @Configuration
 public class SecurityConfig {
     @Autowired
     JWTUtils jwtUtils;
-
-@Autowired
+    @Autowired
     UserDetaillServiceImpl userDetaillService;
+
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity, AuthenticationManager authenticationManager) throws Exception{
         JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(jwtUtils);
         jwtAuthenticationFilter.setAuthenticationManager(authenticationManager);
         jwtAuthenticationFilter.setFilterProcessesUrl("/login");
-        return httpSecurity.authorizeHttpRequests(auth -> {
-                    auth.antMatchers("/hello", "/login", "/productos/all", "/swagger-ui.html", "/v2/api-docs", "/webjars/**").permitAll();
-                    auth.antMatchers("/admin", "/usuarios", "/productos").hasRole("ADMINISTRADOR");
-                    auth.antMatchers("/proveedor/productos").hasRole("PROVEEDOR");
+        return httpSecurity
+                .csrf().disable() // Deshabilita la protección CSRF
+                .authorizeHttpRequests(auth -> {
+                    auth.antMatchers("/hello", "/productos/all", "/productos/add", "/swagger-ui/**",
+                            "/v2/api-docs", "/v3/api-docs",
+                            "/webjars/**",
+                            "/swagger-resources/**", "/configuration/ui",
+                            "/configuration/security", "/crearUsuario").permitAll();
+                    auth.antMatchers("/admin", "/usuarios").hasRole("ADMINISTRADOR");
+                    auth.antMatchers("/proveedor/products").hasRole("PROVEEDOR");
                     auth.anyRequest().authenticated();
                 })
-
                 .sessionManagement(session -> {
                     session.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
                 })
-                .addFilter(jwtAuthenticationFilter)
-
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
+
+
     @Bean
     PasswordEncoder passwordEncoder(){
 
@@ -51,8 +63,5 @@ public class SecurityConfig {
                 .userDetailsService(userDetaillService)
                 .passwordEncoder(passwordEncoder)
                 .and().build();
-
-
     }
-
 }
