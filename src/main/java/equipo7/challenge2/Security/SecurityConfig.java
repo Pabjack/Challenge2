@@ -40,7 +40,7 @@ public class SecurityConfig {
                             "/webjars/**",
                             "/swagger-resources/**", "/configuration/ui",
                             "/configuration/security", "/crearUsuario").permitAll();
-                    auth.antMatchers("/admin", "/usuarios").hasRole("ADMINISTRADOR");
+                    auth.antMatchers("/admin", "/usuarios/all").hasRole("ADMINISTRADOR");
                     auth.antMatchers("/proveedor/products").hasRole("PROVEEDOR");
                     auth.anyRequest().authenticated();
                 })
